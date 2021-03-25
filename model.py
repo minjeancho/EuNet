@@ -88,29 +88,13 @@ class EuNet(nn.Module):
         x0 = x_in
         # add feedback 
         x0 = x0 + self.sigmoid(self.G0(x_all))
-
         x1 = self.sigmoid(self.fc1(x0))
-        if torch.isnan(x1).any():
-            print("x1 is nan")
-            aklfjs
         # add feedback 
         x1 = x1 + self.sigmoid(self.G1(x_all))
-        if torch.isnan(x1).any():
-            print("x1 + g is nan")
-            aklfjs
-
         x2 = self.sigmoid(self.fc2(x1))
-        if torch.isnan(x2).any():
-            print("x2 is nan")
-            aklfjlsk
         # add feedback 
         x2 = x2 + self.sigmoid(self.G2(x_all))
-        if torch.isnan(x2).any():
-            print("x2 + g is nan")
-            aklfjkls
-
         output = self.output(x2)
-
         return x0, x1, x2, output 
 
 
